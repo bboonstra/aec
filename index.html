@@ -9,20 +9,83 @@
     <body>
         <h1>Another Eden Damage Calculator</h1>
         <form id="damageCalculator">
-            <label for="attack">Attack Power:</label>
-            <input type="number" id="attack" name="attack" required />
+            <div id="attackSide">
+                <label for="attackType">Attack Type:</label>
+                <select id="attackType">
+                    <option value="physpwratk">Physical (PWR/ATK)</option>
+                    <option value="physspdatk">Physical (SPD/ATK)</option>
+                    <option value="physintmat">Physical (INT/M.AT)</option>
+                    <option value="magintmat">Magical (INT/M.AT)</option>
+                    <option value="magpwratk">Magical (PWR/ATK)</option>
+                </select>
+                <label for="elementType">Element Type:</label>
+                <select id="elementType">
+                    <option value="Earth">Earth</option>
+                    <option value="Water">Water</option>
+                    <option value="Fire">Fire</option>
+                    <option value="Air">Air</option>
+                    <option value="Shade">Shade</option>
+                    <option value="Crystal">Crystal</option>
+                    <option value="Thunder">Thunder</option>
+                    <option value="Typeless">Typeless</option>
+                </select>
+                <label for="spread">Spread?:</label>
+                <input type="checkbox" id="spread" name="spread" />
+                <label for="characterStat">Attack Power:</label>
+                <input
+                    type="number"
+                    id="physicalAttack"
+                    name="physicalAttack"
+                    required
+                />
 
-            <label for="defense">Defense:</label>
-            <input type="number" id="defense" name="defense" required />
+                <label for="weaponAttack" id="weaponAttackLabel"
+                    >Weapon Attack:</label
+                >
+                <input
+                    type="number"
+                    id="weaponAttack"
+                    name="weaponAttack"
+                    required
+                />
 
-            <label for="multiplier">Damage Multiplier:</label>
-            <input
-                type="number"
-                id="multiplier"
-                name="multiplier"
-                step="0.1"
-                required
-            />
+                <label for="buffType">Buff Type:</label>
+                <select id="buffType">
+                    <option value="Attack" data-attack-type="Physical">
+                        Attack
+                    </option>
+                    <option value="Defense" data-attack-type="Physical,Magic">
+                        Defense
+                    </option>
+                    <option value="Speed" data-attack-type="Physical,Magic">
+                        Speed
+                    </option>
+                    <!-- Add more buff types as needed -->
+                </select>
+                <input type="number" id="buffValue" placeholder="Buff %" />
+                <button type="button" onclick="addBuff()">Add Buff</button>
+
+                <ul id="playerBuffs"></ul>
+            </div>
+
+            <div id="defendSide">
+                <label for="defense" id="defenseLabel">Endurance:</label>
+                <input type="number" id="defense" name="defense" required />
+
+                <label for="enemyBuffType">Enemy Buff Type:</label>
+                <select id="enemyBuffType">
+                    <option value="Attack">Attack</option>
+                    <option value="Defense">Defense</option>
+                    <option value="Speed">Speed</option>
+                    <!-- Add more buff types as needed -->
+                </select>
+                <input type="number" id="enemyBuffValue" placeholder="Buff %" />
+                <button type="button" onclick="addEnemyBuff()">
+                    Add Enemy Buff
+                </button>
+
+                <ul id="enemyBuffs"></ul>
+            </div>
 
             <button type="button" onclick="calculateDamage()">Calculate</button>
         </form>
